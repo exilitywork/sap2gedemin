@@ -1,0 +1,20 @@
+version: "3.2"
+
+services:
+  interact:
+    image: sap-to-gedemin:0.9
+    ports:
+      - "8008:8080"
+    volumes:
+      - type: volume
+        source: logs
+        target: /logs
+        volume:
+          nocopy: true
+    restart: always
+volumes:
+  logs:
+    driver_opts:
+      type: "nfs"
+      o: "addr=192.168.2.113,nolock,soft,rw"
+      device: ":/volume1/Install/Work\ Utils/hr_users/Gedemin"
